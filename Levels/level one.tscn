@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgg5l6ildp86c"]
+
+[ext_resource type="Script" uid="uid://deil2m0cfl7n2" path="res://Levels/player.gd" id="1_6qgaj"]
+[ext_resource type="Texture2D" uid="uid://yadgks1tte4r" path="res://Assets/images/backgrounds/door.png" id="2_4ipp5"]
+[ext_resource type="Texture2D" uid="uid://11aqbaova7k5" path="res://icon.svg" id="2_23imw"]
+[ext_resource type="Texture2D" uid="uid://dgiu2e4nogsyr" path="res://Assets/images/backgrounds/wallpaper.png" id="3_23imw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ipp5"]
+radius = 64.0
+height = 130.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6qgaj"]
+
+[node name="LevelOne" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+z_index = -100
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(0, 270)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_23imw")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Background"]
+position = Vector2(0, -538)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_23imw")
+centered = false
+flip_v = true
+
+[node name="Sprite2D4" type="Sprite2D" parent="Background"]
+position = Vector2(1875, -538)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_23imw")
+centered = false
+flip_v = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background"]
+position = Vector2(1875, 270)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_23imw")
+centered = false
+flip_h = true
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Living Door" type="Sprite2D" parent="Doors"]
+position = Vector2(802, 658)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_4ipp5")
+
+[node name="Bedroom Door" type="Sprite2D" parent="Doors"]
+position = Vector2(2823, 656)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_4ipp5")
+
+[node name="Kitchen Door" type="Sprite2D" parent="Doors"]
+position = Vector2(1626, 659)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_4ipp5")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(155, 667)
+script = ExtResource("1_6qgaj")
+SPEED = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_23imw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_4ipp5")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -119)
+limit_left = 0
+limit_top = 0
+limit_bottom = 1080
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 956)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_6qgaj")
