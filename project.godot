@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=2
+mouse_cursor/custom_image="uid://0cnt7y0qe13"
 
 [input]
 

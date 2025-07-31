@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 
+@export var pointSpeed : float
 @export var SPEED : float
 var target
 var moving = false
@@ -13,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	#point and click
 	if moving:
 		if global_position.x != target.x:
-			global_position.x = move_toward(global_position.x, target.x, SPEED)
+			global_position.x = move_toward(global_position.x, target.x, pointSpeed)
 		else:
 			moving = false
 	
