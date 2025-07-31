@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var location : PackedScene
+@export var location : Node2D
 
 var doorSelected = false
 

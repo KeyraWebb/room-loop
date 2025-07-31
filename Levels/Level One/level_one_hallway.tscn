@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgg5l6ildp86c"]
+[gd_scene load_steps=7 format=3 uid="uid://bgg5l6ildp86c"]
 
 [ext_resource type="Texture2D" uid="uid://dgiu2e4nogsyr" path="res://Assets/images/backgrounds/wallpaper.png" id="1_3n5na"]
 [ext_resource type="PackedScene" uid="uid://dd0h5pqfbhabu" path="res://Objects/door.tscn" id="2_hvnlt"]
-[ext_resource type="PackedScene" uid="uid://rj0iureb8g4v" path="res://Menus/pause_menu.tscn" id="4_3n5na"]
-[ext_resource type="PackedScene" uid="uid://bfyxc880avvo" path="res://Objects/player.tscn" id="4_rxivp"]
+[ext_resource type="Texture2D" uid="uid://11aqbaova7k5" path="res://icon.svg" id="3_c6qbo"]
+[ext_resource type="Script" uid="uid://bb1f2p1wq5ap7" path="res://Levels/Level One/the_guy.gd" id="4_3n5na"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6qgaj"]
 
-[node name="LevelOne" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3n5na"]
+size = Vector2(126.731, 127.5)
+
+[node name="LevelOneHallway" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
 z_index = -100
@@ -44,19 +47,11 @@ flip_h = true
 [node name="Living Door" parent="Doors" instance=ExtResource("2_hvnlt")]
 position = Vector2(802, 658)
 
-[node name="Door" parent="Doors" instance=ExtResource("2_hvnlt")]
+[node name="Kitchen Door" parent="Doors" instance=ExtResource("2_hvnlt")]
 position = Vector2(1586, 663)
 
-[node name="Door2" parent="Doors" instance=ExtResource("2_hvnlt")]
+[node name="Bedroom Door" parent="Doors" instance=ExtResource("2_hvnlt")]
 position = Vector2(2836, 663)
-
-[node name="Player" parent="." instance=ExtResource("4_rxivp")]
-position = Vector2(155, 667)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-limit_left = 0
-limit_top = 0
-limit_bottom = 1080
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, 956)
@@ -64,5 +59,18 @@ position = Vector2(0, 956)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape2D_6qgaj")
 
-[node name="Pause Menu" parent="." instance=ExtResource("4_3n5na")]
-visible = false
+[node name="The guy" type="Sprite2D" parent="."]
+position = Vector2(1193, 724)
+scale = Vector2(-0.939, 4)
+texture = ExtResource("3_c6qbo")
+script = ExtResource("4_3n5na")
+
+[node name="Area2D" type="Area2D" parent="The guy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="The guy/Area2D"]
+position = Vector2(1.59778, 0)
+shape = SubResource("RectangleShape2D_3n5na")
+
+[connection signal="input_event" from="The guy/Area2D" to="The guy" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="The guy/Area2D" to="The guy" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="The guy/Area2D" to="The guy" method="_on_area_2d_mouse_exited"]

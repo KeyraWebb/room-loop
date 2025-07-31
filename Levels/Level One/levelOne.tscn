@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://j0q0m34dwf8u"]
+
+[ext_resource type="PackedScene" uid="uid://bgg5l6ildp86c" path="res://Levels/Level One/level_one_hallway.tscn" id="1_4eynx"]
+[ext_resource type="PackedScene" uid="uid://bfyxc880avvo" path="res://Objects/player.tscn" id="2_sum2k"]
+[ext_resource type="PackedScene" uid="uid://rj0iureb8g4v" path="res://Menus/pause_menu.tscn" id="3_g4jv1"]
+[ext_resource type="PackedScene" uid="uid://gcn2qqpa4pnt" path="res://Menus/dialogue.tscn" id="4_rwd5n"]
+
+[node name="LevelOne" type="Node2D"]
+
+[node name="LevelOneHallway" parent="." instance=ExtResource("1_4eynx")]
+
+[node name="Player" parent="." instance=ExtResource("2_sum2k")]
+position = Vector2(138, 853)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_bottom = 1080
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Dialogue" parent="CanvasLayer" instance=ExtResource("4_rwd5n")]
+visible = false
+
+[node name="Pause Menu" parent="CanvasLayer" instance=ExtResource("3_g4jv1")]
+visible = false
+
+[editable path="LevelOneHallway"]
