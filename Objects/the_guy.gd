@@ -13,12 +13,13 @@ func _on_area_2d_mouse_exited() -> void:
 
 
 func DialogueController():
+	#TODO: Make a controller that will control the dialogue
 	pass
 	
 func LevelOneDialogue():
+	#TODO: level one dialogue
 	dialogueBox.Say("The Guy", "HI")
 
-
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action_pressed("Interact"):
-		LevelOneDialogue()
+	#TODO: make it click
+	pass
