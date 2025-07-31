@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgg5l6ildp86c"]
+[gd_scene load_steps=6 format=3 uid="uid://bgg5l6ildp86c"]
 
-[ext_resource type="Texture2D" uid="uid://dgiu2e4nogsyr" path="res://Assets/images/backgrounds/wallpaper.png" id="1_6uck5"]
-[ext_resource type="Texture2D" uid="uid://yadgks1tte4r" path="res://Assets/images/backgrounds/door.png" id="2_jyhei"]
-[ext_resource type="PackedScene" uid="uid://bfyxc880avvo" path="res://Objects/player.tscn" id="3_toxn4"]
+[ext_resource type="Texture2D" uid="uid://dgiu2e4nogsyr" path="res://Assets/images/backgrounds/wallpaper.png" id="1_3n5na"]
+[ext_resource type="PackedScene" uid="uid://dd0h5pqfbhabu" path="res://Objects/door.tscn" id="2_hvnlt"]
+[ext_resource type="PackedScene" uid="uid://rj0iureb8g4v" path="res://Menus/pause_menu.tscn" id="4_3n5na"]
+[ext_resource type="PackedScene" uid="uid://bfyxc880avvo" path="res://Objects/player.tscn" id="4_rxivp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6qgaj"]
 
@@ -14,48 +15,42 @@ z_index = -100
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 position = Vector2(0, 270)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_6uck5")
+texture = ExtResource("1_3n5na")
 centered = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="Background"]
 position = Vector2(0, -538)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_6uck5")
+texture = ExtResource("1_3n5na")
 centered = false
 flip_v = true
 
 [node name="Sprite2D4" type="Sprite2D" parent="Background"]
 position = Vector2(1875, -538)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_6uck5")
+texture = ExtResource("1_3n5na")
 centered = false
 flip_v = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background"]
 position = Vector2(1875, 270)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_6uck5")
+texture = ExtResource("1_3n5na")
 centered = false
 flip_h = true
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="Living Door" type="Sprite2D" parent="Doors"]
+[node name="Living Door" parent="Doors" instance=ExtResource("2_hvnlt")]
 position = Vector2(802, 658)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_jyhei")
 
-[node name="Bedroom Door" type="Sprite2D" parent="Doors"]
-position = Vector2(2823, 656)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_jyhei")
+[node name="Door" parent="Doors" instance=ExtResource("2_hvnlt")]
+position = Vector2(1586, 663)
 
-[node name="Kitchen Door" type="Sprite2D" parent="Doors"]
-position = Vector2(1626, 659)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_jyhei")
+[node name="Door2" parent="Doors" instance=ExtResource("2_hvnlt")]
+position = Vector2(2836, 663)
 
-[node name="Player" parent="." instance=ExtResource("3_toxn4")]
+[node name="Player" parent="." instance=ExtResource("4_rxivp")]
 position = Vector2(155, 667)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -68,3 +63,6 @@ position = Vector2(0, 956)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape2D_6qgaj")
+
+[node name="Pause Menu" parent="." instance=ExtResource("4_3n5na")]
+visible = false
