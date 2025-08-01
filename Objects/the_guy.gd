@@ -2,7 +2,7 @@
 
 extends Sprite2D
 
-var level = 1
+@export var level = 1
 var currentDialogue = 0
 var selected = false
 var speaking = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://j0q0m34dwf8u"]
+[gd_scene load_steps=11 format=3 uid="uid://j0q0m34dwf8u"]
 
 [ext_resource type="Texture2D" uid="uid://dgiu2e4nogsyr" path="res://Assets/images/backgrounds/wallpaper.png" id="1_258m3"]
 [ext_resource type="Script" uid="uid://0lk0u4jkvb5u" path="res://Levels/Level One/mainroom.gd" id="1_x8eqr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://rj0iureb8g4v" path="res://Menus/pause_menu.tscn" id="3_g4jv1"]
 [ext_resource type="PackedScene" uid="uid://cge0ou844fw7t" path="res://Objects/the_guy.tscn" id="3_gnwpo"]
 [ext_resource type="PackedScene" uid="uid://gcn2qqpa4pnt" path="res://Menus/dialogue.tscn" id="4_rwd5n"]
+[ext_resource type="Texture2D" uid="uid://b3jk1vvfchlnw" path="res://Assets/images/backgrounds/LivingWallpaper.png" id="9_r4xak"]
 [ext_resource type="Script" uid="uid://lba2ro0bxp84" path="res://Levels/Level One/sideRooms.gd" id="10_5uvqm"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6qgaj"]
@@ -20,28 +21,11 @@ script = ExtResource("1_x8eqr")
 z_index = -100
 
 [node name="Sprite2D" type="Sprite2D" parent="Hallway/Background"]
-position = Vector2(0, 270)
-scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_258m3")
 centered = false
-
-[node name="Sprite2D3" type="Sprite2D" parent="Hallway/Background"]
-position = Vector2(0, -538)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_258m3")
-centered = false
-flip_v = true
-
-[node name="Sprite2D4" type="Sprite2D" parent="Hallway/Background"]
-position = Vector2(1875, -538)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_258m3")
-centered = false
-flip_v = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Hallway/Background"]
-position = Vector2(1875, 270)
-scale = Vector2(0.75, 0.75)
+position = Vector2(2500, 0)
 texture = ExtResource("1_258m3")
 centered = false
 flip_h = true
@@ -54,26 +38,17 @@ location = NodePath("../../../LivingRoom")
 homeRoom = NodePath("../..")
 
 [node name="Kitchen Door" parent="Hallway/Doors" node_paths=PackedStringArray("location") instance=ExtResource("2_x8eqr")]
-position = Vector2(1586, 663)
+position = Vector2(1586, 658)
 location = NodePath("../../../Kitchen")
 
 [node name="Bedroom Door" parent="Hallway/Doors" node_paths=PackedStringArray("location") instance=ExtResource("2_x8eqr")]
-position = Vector2(2836, 663)
+position = Vector2(2836, 658)
 location = NodePath("../../../Bedroom")
 
 [node name="The guy" parent="Hallway" instance=ExtResource("3_gnwpo")]
 position = Vector2(1177, 713)
 rotation = 3.14159
 scale = Vector2(0.939, -4)
-
-[node name="Player" parent="." instance=ExtResource("2_sum2k")]
-unique_name_in_owner = true
-position = Vector2(138, 853)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-limit_left = 0
-limit_top = 0
-limit_bottom = 1080
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -84,14 +59,21 @@ visible = false
 visible = false
 
 [node name="Kitchen" type="Node2D" parent="."]
+visible = false
 script = ExtResource("10_5uvqm")
 
 [node name="Background" type="Node2D" parent="Kitchen"]
 
 [node name="LivingRoom" type="Node2D" parent="."]
+visible = false
 script = ExtResource("10_5uvqm")
 
+[node name="Sprite2D" type="Sprite2D" parent="LivingRoom"]
+texture = ExtResource("9_r4xak")
+centered = false
+
 [node name="Bedroom" type="Node2D" parent="."]
+visible = false
 script = ExtResource("10_5uvqm")
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -99,3 +81,12 @@ position = Vector2(0, 956)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape2D_6qgaj")
+
+[node name="Player" parent="." instance=ExtResource("2_sum2k")]
+unique_name_in_owner = true
+position = Vector2(138, 853)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_bottom = 1080
